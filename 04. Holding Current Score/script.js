@@ -52,3 +52,24 @@ btnRoll.addEventListener('click', function () {
     }
   }
 });
+
+btnHold.addEventListener('click', function () {
+  if (playing) {
+    scores[activePlayer] += currentScore;
+    document.querySelector(`#score--${activePlayer}`).textContent =
+      scores[activePlayer];
+
+    if (scores[activePlayer] >= 20) {
+      playing = false;
+      diceEl.classList.add('hidden');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--active');
+    } else {
+      switchPlayer();
+    }
+  }
+});
